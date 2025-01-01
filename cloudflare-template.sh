@@ -1,23 +1,24 @@
 #!/bin/bash
 ## change to "bin/sh" when necessary
 
-auth_email=""                                       # The email used to login 'https://dash.cloudflare.com'
+# Use environment variables for sensitive information
+auth_email="${CF_AUTH_EMAIL}"                       # The email used to login 'https://dash.cloudflare.com'
 auth_method="token"                                 # Set to "global" for Global API Key or "token" for Scoped API Token
-auth_key=""                                         # Your API Token or Global API Key
-zone_identifier=""                                  # Can be found in the "Overview" tab of your domain
-record_name=""                                      # Which record you want to be synced
+auth_key="${CF_AUTH_KEY}"                           # Your API Token or Global API Key
+zone_identifier="${CF_ZONE_IDENTIFIER}"             # Can be found in the "Overview" tab of your domain
+record_name="${CF_RECORD_NAME}"                     # Which record you want to be synced
 ttl=3600                                            # Set the DNS TTL (seconds)
 proxy="false"                                       # Set the proxy to true or false
-sitename=""                                         # Title of site "Example Site"
-slackchannel=""                                     # Slack Channel #example
-slackuri=""                                         # URI for Slack WebHook "https://hooks.slack.com/services/xxxxx"
-discorduri=""                                       # URI for Discord WebHook "https://discordapp.com/api/webhooks/xxxxx"
+sitename="${CF_SITENAME}"                           # Title of site "Example Site"
+slackchannel="${CF_SLACK_CHANNEL}"                  # Slack Channel #example
+slackuri="${CF_SLACK_URI}"                          # URI for Slack WebHook "https://hooks.slack.com/services/xxxxx"
+discorduri="${CF_DISCORD_URI}"                      # URI for Discord WebHook "https://discordapp.com/api/webhooks/xxxxx"
 
 
 ###########################################
 ## Check if we have a public IP
 ###########################################
-ipv4_regex='([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])'
+ipv4_regex='([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\.([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])'
 ip=$(curl -s -4 https://cloudflare.com/cdn-cgi/trace | grep -E '^ip'); ret=$?
 if [[ ! $ret == 0 ]]; then # In the case that cloudflare failed to return an ip.
     # Attempt to get the ip from other websites.
