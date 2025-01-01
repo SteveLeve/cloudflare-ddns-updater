@@ -7,17 +7,17 @@
 # @auth_key             - Your API Token or Global API Key
 # @zone_identifier      - Can be found in the "Overview" tab of your domain
 # -------------------------------------------------- #
-auth_email=""
+auth_email="${CF_AUTH_EMAIL}"
 auth_method="token"
-auth_key=""
-zone_identifier=""
+auth_key="${CF_AUTH_KEY}"
+zone_identifier="${CF_ZONE_IDENTIFIER}"
 
 #############  DNS RECORD CONFIGURATION  #############
 # @record_name          - Which record you want to be synced
 # @ttl                  - DNS TTL (seconds), can be set between (30 if enterprise) 60 and 86400 seconds, or 1 for Automatic
 # @proxy                - Set the proxy to true or false
 # -------------------------------------------------- #
-record_name=""
+record_name="${CF_RECORD_NAME}"
 ttl=3600
 proxy="false"
 
@@ -40,10 +40,10 @@ log_header_name="DDNS Updater_v6"
 # @slackuri             - URI for Slack WebHook "https://hooks.slack.com/services/xxxxx"
 # @discorduri           - URI for Discord WebHook "https://discordapp.com/api/webhooks/xxxxx"
 # -------------------------------------------------- #
-sitename=""
-slackchannel=""
-slackuri=""
-discorduri=""
+sitename="${CF_SITENAME}"
+slackchannel="${CF_SLACK_CHANNEL}"
+slackuri="${CF_SLACK_URI}"
+discorduri="${CF_DISCORD_URI}"
 
 
 

@@ -27,6 +27,23 @@ This script is used with crontab. Specify the frequency of execution through cro
 # * * * * * /bin/bash {Location of the script}
 ```
 
+### Setting Environment Variables for Sensitive Information
+
+Before running the script, you need to set the following environment variables with your Cloudflare account details and other sensitive information:
+
+```bash
+export CF_AUTH_EMAIL="your_cloudflare_email"
+export CF_AUTH_KEY="your_cloudflare_api_key"
+export CF_ZONE_IDENTIFIER="your_zone_identifier"
+export CF_RECORD_NAME="your_record_name"
+export CF_SITENAME="your_site_name"
+export CF_SLACK_CHANNEL="your_slack_channel"
+export CF_SLACK_URI="your_slack_webhook_uri"
+export CF_DISCORD_URI="your_discord_webhook_uri"
+```
+
+You can add these lines to your `.bashrc`, `.zshrc`, or other shell configuration files to set them automatically when you open a new terminal session.
+
 ## Tested Environments:
 macOS Mojave version 10.14.6 (x86_64) <br />
 AlmaLinux 9.3 (Linux kernel: 5.14.0 | x86_64) <br />
