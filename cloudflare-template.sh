@@ -25,7 +25,7 @@ if [[ ! $ret == 0 ]]; then # In the case that cloudflare failed to return an ip.
     ip=$(curl -s https://api.ipify.org || curl -s https://ipv4.icanhazip.com)
 else
     # Extract just the ip from the ip line from cloudflare.
-    ip=$(echo $ip | sed -E "s/^ip=($ipv4_regex)$/\1/")
+    ip=$(echo $ip | sed -E "s/^ip=//")
 fi
 
 # Use regex to check for proper IPv4 format.
